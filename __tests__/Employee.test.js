@@ -1,16 +1,16 @@
 const Employee = require('../lib/Employee')
 
-describe ('Employee Class', () => {
+describe('Employee Class', () => {
     describe('Properties', () => {
-        it('has a name',() => {
+        it('has a name', () => {
             const employee = new Employee('Employee', 120, 'employee@company.com');
             expect(employee.name).toBe('Employee');
         })
-        it('has an ID',() => {
+        it('has an ID', () => {
             const employee = new Employee('Employee', 120, 'employee@company.com');
             expect(employee.ID).toBe(120);
         })
-        it('has an email',() => {
+        it('has an email', () => {
             const employee = new Employee('Employee', 120, 'employee@company.com');
             expect(employee.email).toBe('employee@company.com');
         })
@@ -37,9 +37,9 @@ describe ('Employee Class', () => {
         })
     })
     describe('getRole method', () => {
-        it('returns the Employee class', () => {
+        it('returns Employee', () => {
             const employee = new Employee('Employee', 120, 'employee@company.com');
-            expect(employee.getRole()).toBeInstanceOf(Employee)
+            expect(employee.getRole()).toBe('Employee')
         })
     })
 
