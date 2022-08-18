@@ -2,10 +2,12 @@
 
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateWebpage = require('./src/generateWebpage.js');
 
 // Registering inquirer-loop prompt to the inquirer module
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
+// Questions to ask the user within the terminal
 const questions = [
 
     {
@@ -18,23 +20,23 @@ const questions = [
         type: 'input',
         message: 'What is their employee ID?',
         name: 'managerID',
-        validate: input => input ? true : console.warn('\nPlease provide a value'),
+        validate: input => isNaN(input) ? console.warn('\nPlease provide a proper value') : true,
     },
     {
         type: 'input',
         message: 'What is their email?',
         name: 'managerEmail',
-        validate: input => input ? true : console.warn('\nPlease provide a value'),
+        // RegEx mail check utilized from https://stackoverflow.com/questions/65189877/how-can-i-validate-that-a-user-input-their-email-when-using-inquirer-npm and https://regexr.com/3e48o
+        validate: managerEmail => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(managerEmail) ? true : console.warn('\nPlease provide a valid email')
 
     },
     {
         type: 'input',
         message: 'What is their office number? (XXXXXXXXX)',
         name: 'managerNumber',
-        validate: input => input.length == 9 ? true : console.warn('\nPlease provide a 9 digit phone number'),
+        validate: input => input.length == 9 && !isNaN(input) ? true : console.warn('\nPlease provide a 9 digit phone number'),
 
     },
-
     {
         type: 'loop',
         message: 'Would you like to add another employee? (y/n)',
@@ -56,56 +58,40 @@ const questions = [
                 type: 'input',
                 message: 'What is their employee ID?',
                 name: 'employeeID',
-                validate: input => input ? true : console.warn('\nPlease provide a value'),
+                validate: input => isNaN(input) ? console.warn('\nPlease provide a proper value') : true,
             },
             {
                 type: 'input',
                 message: 'What is their email?',
                 name: 'employeeEmail',
-                validate: input => input ? true : console.warn('\nPlease provide a value'),
+                // RegEx mail check utilized from https://stackoverflow.com/questions/65189877/how-can-i-validate-that-a-user-input-their-email-when-using-inquirer-npm and https://regexr.com/3e48o
+                validate: managerEmail => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(managerEmail) ? true : console.warn('\nPlease provide a valid email')
             },
             {
                 type: 'input',
                 message: 'What is their GitHub username?',
                 name: 'engGithub',
+                // Enables question only if user answered engineer
                 when: employee => employee.employeeRole === 'Engineer',
             },
             {
                 type: 'input',
                 message: 'What is their school?',
                 name: 'internSchool',
+                // Enables question only if user answered intern
                 when: employee => employee.employeeRole === 'Intern',
             }
 
 
         ],
     },
-    // {
-    //     type: 'input',
-    //     message: 'Contribution Guidelines?',
-    //     name: 'contribution',
-    //     default: 'None'
-    // },
-    // {
-    //     type: 'input',
-    //     message: 'Test instructions?',
-    //     name: 'tests',
-    //     default: 'None'
-    // },
-    // {
-    //     type: 'input',
-    //     message: 'Email Address?',
-    //     name: 'email',
-    //     validate: input => input ? true : console.warn('\nPlease provide a value'),
-
-    // },
 ];
 
 
-// // The writeToFile function generates the readme file.
-// function writeToFile(fileName, data) {
-
-//     fs.writeFile(fileName, data, (err) =>
+// The writeToFile function generates the webpage.
+// function writeToFile(data) {
+//     const file = './dist/teamWebpage.html'
+//     fs.writeFile(file, data, (err) =>
 //         err ? console.error('Error in writing File!') : console.log('ReadMe successfully generated!')
 //     );
 // };
