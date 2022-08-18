@@ -1,5 +1,5 @@
 const Employee = require('../lib/Employee');
-const Engineer = require('../lib/Intern');
+const Intern = require('../lib/Intern');
 
 
 describe('Intern class', () => {
