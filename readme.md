@@ -11,7 +11,7 @@
 
   ## Description
 
-  This profile generator generates a webpage to display my team's basic information in order to have quick access to emails and GitHub profiles.
+  This profile generator generates a webpage to display my team's basic information in order to have quick access to emails and GitHub profiles. This program uses inquirer to query the user in the terminal for information regarding the team. Afterwards, that information is inserted directly into HTML code to eventually be output into an HTML file that presents the team.
 
   ## Table of Contents 
 
@@ -28,25 +28,32 @@
 
   Download off of GitHub, ensure all dependencies are installed using npm i.
 
-  ## Usage
+    Dependencies:
 
-  Within directory, run node index.js
+    - inquirer@8.2.4
+    - inquirer-loop
+    - jest
+
+
+## Usage
+
+Within directory, run node index.js
   
 
-  ## Credits
+## Credits
 
-  https://github.com/toTOEro 
+https://github.com/toTOEro 
   
-  ## Tests
+## Tests
 
-  Run npm test 
+Run npm test 
 
-  ## Questions
+## Questions
   
-  Reach out to me via GitHub or email! 
+Reach out to me via GitHub or email! 
 
-  https://github.com/toTOEro
+https://github.com/toTOEro
 
-  anthony3738@gmail.com
+anthony3738@gmail.com
   
   
