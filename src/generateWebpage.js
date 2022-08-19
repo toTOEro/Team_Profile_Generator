@@ -1,20 +1,53 @@
 // This module is utilized to generate all the HTML web elements to display the team information
 
+// Temporary data setup to ease troubleshooting and code development
+const data = {
+    managerName: 'Manager',
+    managerID: '1234',
+    managerEmail: 'manager@manager.com',
+    managerNumber: '123456789',
+    employees: [
+      {
+        employeeRole: 'Engineer',
+        employeeName: 'Engineer',
+        employeeID: '123',
+        employeeEmail: 'eng@eng.com',
+        engGithub: 'Engineer'
+      },
+      {
+        employeeRole: 'Intern',
+        employeeName: 'Intern',
+        employeeID: '1',
+        employeeEmail: 'int@int.com',
+        internSchool: 'internUniversity'
+      }
+    ]
+  }
+
+
+
 // The renderEmployees function generates the HTML code for the employees reporting to the manager 
 function renderEmployees(data) {
     const { employees } = data;
 
     if (employees.length !== 0) {
-        let employeeSection
+        let employeeSection = '';
 
         for (let i = 0; i < employees.length; i++) {
             let { employeeRole, employeeName, employeeID, employeeEmail, engGithub, internSchool } = employees[i];
-
-            let uniqueEmployeeInfo = employeeRole = 'Engineer' ? `GitHub: <a href=https://www.github.com/${engGithub}>${engGithub}</a>` : `School: ${internSchool}`
+            let uniqueEmployeeInfo
+            // console.log(employeeRole)
+            // let uniqueEmployeeInfo = employeeRole = 'Engineer' ? `GitHub: <a href=https://www.github.com/${engGithub}>${engGithub}</a>` : `School: ${internSchool}`
             
+            if (employeeRole =='Engineer') {
+                uniqueEmployeeInfo = `GitHub: <a href=https://www.github.com/${engGithub}>${engGithub}</a>`
+            } else {
+                uniqueEmployeeInfo = `School: ${internSchool}`
+            };
 
-            employeeHTML = `
-                <div class="card" style="width: 18rem;">
+
+            let employeeHTML = `
+            <div class="card" style="width: 18rem;">
                 <div class="card-title">
                     <h5>${employeeName}</h5>
                     <h4>${employeeRole}</h4>
@@ -30,7 +63,6 @@ function renderEmployees(data) {
                 </div>`
             employeeSection += employeeHTML
         };
-        console.log(employeeSection)
         return employeeSection
     } else {
         return ''
