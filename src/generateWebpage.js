@@ -4,44 +4,6 @@ const Manager = require('../lib/Manager');
 const Intern = require('../lib/Intern');
 const Engineer = require('../lib/Engineer');
 
-// Temporary data setup to ease troubleshooting and code development
-const data = {
-    managerName: 'Bobby',
-    managerID: '1234',
-    managerEmail: 'manager@manager.com',
-    managerNumber: '123456789',
-    employees: [
-        {
-            employeeRole: 'Engineer',
-            employeeName: 'Bobby',
-            employeeID: '123',
-            employeeEmail: 'eng@eng.com',
-            engGithub: 'Engineer'
-        },
-        {
-            employeeRole: 'Intern',
-            employeeName: 'Bobby',
-            employeeID: '1',
-            employeeEmail: 'int@int.com',
-            internSchool: 'internUniversity'
-        },
-        {
-            employeeRole: 'Intern',
-            employeeName: 'Bobby',
-            employeeID: '1',
-            employeeEmail: 'int@int.com',
-            internSchool: 'internUniversity'
-        },
-        {
-            employeeRole: 'Engineer',
-            employeeName: 'Bobby',
-            employeeID: '123',
-            employeeEmail: 'eng@eng.com',
-            engGithub: 'Engineer'
-        },
-    ]
-}
-
 
 // The renderEmployees function generates the HTML code for the employees reporting to the manager 
 function renderEmployees(data) {
@@ -61,7 +23,7 @@ function renderEmployees(data) {
         let uniqueEmployeeInfo = '';
 
         staff.forEach((item) => {
-            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href=${item.getGithub()}>${item.github}</a>` : `School: ${item.getSchool()}`
+            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href="${item.getGithub()}">${item.github}</a>` : `School: ${item.getSchool()}`
 
             let employeeHTML = `
                 <div class="card m-3" style="width: 18rem;">

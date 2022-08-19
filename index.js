@@ -101,7 +101,7 @@ function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            writeToFile(response)
+            writeToFile(generateWebpage(response))
         )
 
 }
