@@ -89,19 +89,19 @@ const questions = [
 
 
 // The writeToFile function generates the webpage.
-// function writeToFile(data) {
-//     const file = './dist/teamWebpage.html'
-//     fs.writeFile(file, data, (err) =>
-//         err ? console.error('Error in writing File!') : console.log('ReadMe successfully generated!')
-//     );
-// };
+function writeToFile(data) {
+    const file = './dist/teamWebpage.html'
+    fs.writeFile(file, data, (err) =>
+        err ? console.error('Error in writing File!') : console.log('ReadMe successfully generated!')
+    );
+};
 
 // This function initializes the app to begin asking questions.
 function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            console.log(generateWebpage(response))
+            writeToFile(response)
         )
 
 }
