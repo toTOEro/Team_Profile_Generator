@@ -23,7 +23,7 @@ function renderEmployees(data) {
         let uniqueEmployeeInfo = '';
 
         staff.forEach((item) => {
-            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href="${item.getGithub()}">${item.github}</a>` : `School: ${item.getSchool()}`
+            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href="${item.getGithub()}" target="_blank">${item.github}</a>` : `School: ${item.getSchool()}`
 
             let employeeHTML = `
                 <div class="card m-3" style="width: 18rem;">
