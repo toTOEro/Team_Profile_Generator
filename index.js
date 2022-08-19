@@ -101,7 +101,7 @@ function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            console.log(response)
+            generateWebpage(response)
         )
 
 }
