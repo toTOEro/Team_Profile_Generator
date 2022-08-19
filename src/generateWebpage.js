@@ -6,35 +6,35 @@ const Engineer = require('../lib/Engineer');
 
 // Temporary data setup to ease troubleshooting and code development
 const data = {
-    managerName: 'Manager',
+    managerName: 'Bobby',
     managerID: '1234',
     managerEmail: 'manager@manager.com',
     managerNumber: '123456789',
     employees: [
         {
             employeeRole: 'Engineer',
-            employeeName: 'Engineer',
+            employeeName: 'Bobby',
             employeeID: '123',
             employeeEmail: 'eng@eng.com',
             engGithub: 'Engineer'
         },
         {
             employeeRole: 'Intern',
-            employeeName: 'Intern',
+            employeeName: 'Bobby',
             employeeID: '1',
             employeeEmail: 'int@int.com',
             internSchool: 'internUniversity'
         },
         {
             employeeRole: 'Intern',
-            employeeName: 'Intern',
+            employeeName: 'Bobby',
             employeeID: '1',
             employeeEmail: 'int@int.com',
             internSchool: 'internUniversity'
         },
         {
             employeeRole: 'Engineer',
-            employeeName: 'Engineer',
+            employeeName: 'Bobby',
             employeeID: '123',
             employeeEmail: 'eng@eng.com',
             engGithub: 'Engineer'
@@ -42,7 +42,6 @@ const data = {
     ]
 }
 
-renderEmployees(data)
 
 // The renderEmployees function generates the HTML code for the employees reporting to the manager 
 function renderEmployees(data) {
@@ -62,45 +61,61 @@ function renderEmployees(data) {
         let uniqueEmployeeInfo = '';
 
         staff.forEach((item) => {
-            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href=https://www.github.com/${item.getGithub()}>${item.getGithub()}</a>` : `School: ${item.getSchool()}`
+            uniqueEmployeeInfo = item.getRole() == 'Engineer' ? `GitHub: <a href=${item.getGithub()}>${item.github}</a>` : `School: ${item.getSchool()}`
 
             let employeeHTML = `
-            <div class="card" style="width: 18rem;">
-                <div class="card-title">
-                    <h5>${item.name}</h5>
-                    <h4>${item.role}</h4>
-                </div>
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Employee Information:</h6>
-                    <ul>
-                        <li class="card-text">ID: ${item.ID}</li>
-                        <li class="card-text">Email: ${item.email}</li>
-                        <li class="card-text">${uniqueEmployeeInfo}</li>
-                    </ul>
-                </div>
-                </div>`
+                <div class="card m-3" style="width: 18rem;">
+                   <div class="card-title bg-primary pl-1">
+                        <h4>${item.name}</h4>
+                        <h5 class="font-italic">${item.role}</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Employee Information:</h6>
+                        <ul class="pl-1">
+                            <li class="card-text">ID: ${item.ID}</li>
+                            <li class="card-text">Email: <a href="mailto: ${item.email}"> ${item.email} </a></li>
+                            <li class="card-text">${uniqueEmployeeInfo}</li>
+                        </ul>
+                    </div>
+                    </div>`
             employeeSection += employeeHTML
         })
-
-
         return employeeSection
     } else {
         return ''
     };
 };
 
-
 // The renderManager function generates the HTML code for the manager 
 function renderManager(data) {
     const { managerName, managerID, managerEmail, managerNumber } = data;
-
+    const manager = new Manager(managerName, managerID, managerEmail, managerNumber);
+    return `
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-title bg-primary pl-1">
+                <h4>${manager.name}</h4>
+                <h5 class="font-italic">${manager.role}</h5>
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Employee Information:</h6>
+                <ul class="pl-1">
+                    <li class="card-text">ID: ${manager.ID}</li>
+                    <li class="card-text">Email: <a href="mailto: ${manager.email}"> ${manager.email} </a></li>
+                    <li class="card-text">Phone: ${managerNumber}</li>
+                </ul>
+            </div>
+        </div>`
 }
+
 
 // The generateWebpage function utilizes the code from the renderEmployes and renderManager functions to generate the finalized webpage
 function generateWebpage(data) {
     const managerSection = renderManager(data);
     const employeeSection = renderEmployees(data);
 
+    const dreamTeam = managerSection + employeeSection;
+
+    console.log(dreamTeam)
 
     return `
     <!DOCTYPE html>
@@ -122,13 +137,15 @@ function generateWebpage(data) {
         <p>We're united by our love for coding!</p>
     </div>
 
-    ${employeeHTML}
-    ${managerHTML}
+    <div class="d-flex justify-content-center">
+    ${dreamTeam}
+    </div>
         
     </body>
     </html>
     `
 }
+
 
 
 
