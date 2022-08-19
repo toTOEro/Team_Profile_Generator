@@ -39,7 +39,7 @@ const questions = [
     },
     {
         type: 'loop',
-        message: 'Would you like to add another employee? (y/n)',
+        message: 'Would you like to add another employee?',
         name: 'employees',
         questions: [
             {
@@ -101,7 +101,7 @@ function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            generateWebpage(response)
+            console.log(generateWebpage(response))
         )
 
 }

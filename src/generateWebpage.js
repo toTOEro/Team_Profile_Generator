@@ -115,8 +115,6 @@ function generateWebpage(data) {
 
     const dreamTeam = managerSection + employeeSection;
 
-    console.log(dreamTeam)
-
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -149,5 +147,4 @@ function generateWebpage(data) {
 
 
 
-
-module.exports = renderEmployees;
+module.exports = generateWebpage;
