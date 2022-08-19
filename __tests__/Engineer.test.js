@@ -11,7 +11,7 @@ describe('Engineer class', () => {
     describe('getGithub method', () => {
         it('returns the GitHub URL', () => {
             const engineer = new Engineer('Engineer', 120, 'Engineer@company.com', 'userName');
-            expect(engineer.getGithub()).toBe('https://github.com/userName/')
+            expect(engineer.getGithub()).toBe('https://github.com/userName')
         });
     });
 
